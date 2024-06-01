@@ -1,0 +1,56 @@
+{% extends 'ecommerce/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <!-- Categorías Tabs -->
+        <div class="col-md-3">
+            <div class="nav flex-column nav-tabs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                {% for category in categories %}
+                <a class="nav-link {% if forloop.first %}active{% endif %}" id="v-pills-{{ category.id }}-tab"
+                    data-bs-toggle="pill" href="#v-pills-{{ category.id }}" role="tab"
+                    aria-controls="v-pills-{{ category.id }}"
+                    aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Artículos Tarjetas -->
+        <div class="col-md-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                {% for category in categories %}
+                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="v-pills-{{ category.id }}"
+                    role="tabpanel" aria-labelledby="v-pills-{{ category.id }}-tab">
+                    <div class="row">
+                        {% for product in category.products.all %}
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img src="{{ product.image.url }}" class="card-img-top"
+                                    alt="{{ product.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">${{ product.price }}</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Ver
+                                            Producto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
