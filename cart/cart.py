@@ -7,7 +7,7 @@ class Cart:
     def __init__(self, request):
         #Initialize the cart
         self.session = request.session
-        cart + self.session.get(settings.CART_SESSION_ID)
+        cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:                                                                                    #if the cart is not created, they create an empty cart
             cart = self.session[settings.CART_SESSION_ID] = {}   #the cart is create as dictionary
         self.cart = cart

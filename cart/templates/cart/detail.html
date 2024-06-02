@@ -1,0 +1,87 @@
+{% extends 'ecommerce/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="h-100" style="background-color: #eee;">
+    <div class="container ">
+        <div class="row d-flex justify-content-center align-items-center  h-100">
+            <div class="col-10">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="fw-normal mt-5 text-black raleway">Carrito de compras</h3>
+                </div>
+                <hr>
+
+
+                {% for item in cart %}
+
+                {% with articulo=item.product %}
+
+                <div class="card rounded-3 mb-4 " data-product-id="{{ articulo.id }}">
+                    <div class="card-body p-4">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                <a href="{{ articulo.get_absolute_url }}">
+                                    <img src="{{ articulo.image.url }}" class="img-fluid rounded-3"
+                                        alt="Imagen_Producto">
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                <a class="lead fw-normal mb-2 text-info text-reset text-decoration-none raleway" m
+                                    href="{{ articulo.get_absolute_url }}">{{ articulo.name }}</a>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+
+                                <input id="form1" min="0" name="quantity" value="{{ item.qty }}" value="{{ item.qty }}"
+                                    type="number" class="form-control form-control-sm" />
+
+                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-xl-1  offset-lg-1  col-sm-6 delete-button  mb-2 mt-2 text-center"
+                                data-index="{{ articulo.id }}">
+                                <a type="button" role="button" id="delete-button">
+                                    <i class="bi bi-trash3"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                <h5 class="mb-0">$ {{ articulo.price }}</h5>
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+                {% empty %}
+                <p>El carrito se encuentra vacio</p>
+                {% endfor %}
+
+                {% if cart %}
+                <div class="card">
+                    <div class="card-body row">
+                        <div class="card-body col-sm-6 col-md-6 col-lg-6 text-center">
+                            <h4 class="m-0 " id="total">Total: ${{ cart.get_total }}</h4>
+                        </div>
+                        <div class="card-body col-sm-6 col-md-6 col-lg-6 text-center">
+                            <a href="{% url 'checkout' %}" class="btn btn-success btn-block btn-lg raleway"
+                                id="complete-order" type="submit"> Proceder al pago
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

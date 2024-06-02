@@ -37,7 +37,7 @@
                 </ul>
             </div>
             <!-- Carrito de compras siempre visible -->
-            <a type="button" role="button" href="" class="btn btn-secondary" id="boton-carrito">
+            <a type="button" role="button" href="{% url 'cart:cart_detail' %}" class="btn btn-secondary" id="boton-carrito">
                 <i class="bi bi-cart"></i>
                 &nbsp;
                 <span id="cart-qty" class="d-inline-flex text-white">
