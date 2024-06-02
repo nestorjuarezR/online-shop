@@ -56,7 +56,7 @@
                             <h4 class="m-0" id="total">Total: ${{ cart.get_total_price }}</h4>
                         </div>
                         <div class="card-body col-sm-6 col-md-6 col-lg-6 text-center">
-                            <a href="" class="btn btn-success btn-block btn-lg raleway"
+                            <a href="{% url 'orders:order_create' %}" class="btn btn-success btn-block btn-lg raleway"
                                 id="complete-order" type="submit"> Proceder al pago
                             </a>
                         </div>
