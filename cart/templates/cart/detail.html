@@ -27,7 +27,7 @@
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                 <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-                                    <input type="submit" value="Remove">
+                                    <input class="btn btn-danger" type="submit" value="Remove">
                                     {% csrf_token %}
                                 </form>
                             </div>
@@ -35,7 +35,7 @@
                                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                                     {{ item.update_quantity_form.quantity }}
                                     {{ item.update_quantity_form.override }}
-                                    <input type="submit" value="Update">
+                                    <input class="btn btn-success" type="submit" value="Update">
                                     {% csrf_token %}
                                 </form>
                             </div>
