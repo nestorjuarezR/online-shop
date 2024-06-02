@@ -28,26 +28,18 @@
                     <div class="col">
                         <div class="row p-3 align-items-center">
                             <div class="col-6 raleway">
-                                <label for="select">Cantidad</label>
-                                &nbsp;
-                                <select id="select" name="cantidad">
-                                    {% for i in cantidad_opciones %}
-                                    <option value="{{ i }}">{{ i }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-6 d-flex justify-content-end align-items-center">
-                                <!-- Agregar al carrito -->
-                                <button type="button" id="liveToastBtn" value="{{ articulo.id }}"
-                                    class="btn btn-secondary btn-sm me-2 raleway">Agregar al carrito</button>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                    {{ cart_product_form }}
+                                    {% csrf_token %}
+                                    <input type="submit" value="Add to cart">
+                                </form>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
-
-
 
 
         {% endblock content %}
