@@ -19,10 +19,6 @@ config = ConfigParser()
 config.read('stripe_keys.txt')
 
 
-# Obtener las variables del archivo
-STRIPE_PUBLISHABLE_KEY = config.get('stripe', 'STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET_KEY = config.get('stripe', 'STRIPE_SECRET_KEY')
-STRIPE_API_VERSION = config.get('stripe', 'STRIPE_API_VERSION')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,3 +152,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 STRIPE_PUBLISHABLE_KEY = config.get('stripe', 'STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config.get('stripe', 'STRIPE_SECRET_KEY')
 STRIPE_API_VERSION = config.get('stripe', 'STRIPE_API_VERSION')
+STRIPE_WEBHOOK_SECRET = config.get('stripe', 'STRIPE_WEBHOOK_SECRET')
