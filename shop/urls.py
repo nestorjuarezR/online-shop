@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),  # Incluyendo las URLs de 'cart' con el namespace 'cart'
     path('orders/', include('orders.urls', namespace = 'orders')), #Incluye las URLs de 'orders' app
+    path('payment/', include('payment.urls'), name='payment'), #Inluye las URL de payment app
     path('', include('ecommerce.urls')),
 ] 
 
