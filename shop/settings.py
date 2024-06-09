@@ -11,6 +11,18 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from configparser import ConfigParser
+
+# ConfigParser para leer el archivo stripe_keys.txt
+config = ConfigParser()
+config.read('stripe_keys.txt')
+
+
+# Obtener las variables del archivo
+STRIPE_PUBLISHABLE_KEY = config.get('stripe', 'STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config.get('stripe', 'STRIPE_SECRET_KEY')
+STRIPE_API_VERSION = config.get('stripe', 'STRIPE_API_VERSION')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +52,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecommerce.apps.EcommerceConfig',         #Ecommerce App
     'cart.apps.CartConfig',                                       #Cart app
-    'orders.apps.OrdersConfig'                              #Orders app               
+    'orders.apps.OrdersConfig' ,                             #Orders app               
+    'payment.apps.PaymentConfig',                      #Payment app
+
 ]
 
 MIDDLEWARE = [
@@ -138,3 +152,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #STRIPE
 
+# Stripe configuration
+STRIPE_PUBLISHABLE_KEY = config.get('stripe', 'STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config.get('stripe', 'STRIPE_SECRET_KEY')
+STRIPE_API_VERSION = config.get('stripe', 'STRIPE_API_VERSION')
