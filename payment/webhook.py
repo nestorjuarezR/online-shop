@@ -35,7 +35,11 @@ def stripe_webhokk(request):
             
             #mark order as paid
             order.paid = True
+            #Store stripe payment ID
+            order.stripe_id = session.payment_intent
             order.save()
+            #Launch asynchronous task
+            payment_completed.delay(order.id)
 
     return HttpResponse(status=200)
   
